@@ -2,7 +2,7 @@
 
 ### Fake S3 on your filesystem for Paperclip.
 
-Simulate writing and reading from S3 by using your filesystem as a Fake S3.
+This is a Rails Engine that helps simulate writing and reading from S3, by using your filesystem as a Fake S3.
 
 Instead of this:
 ``` ruby
@@ -26,6 +26,7 @@ You should be able to write one config per paperclip attachment, specify the S3 
 
 With FakerClip, your filesystem is treated as an s3 bucket so you don't have to wonder if the changes you made to your s3 bucket configuration went to the right place.  The idea is, if it didn't work on your local filesystem on development or test environments, it won't work on S3!
 
+In addition to having just one possible configuration per model, you no longer have to wonder if changes to your _almost_ untestable S3 config will break production on your next deploy.
 ### Setup
 
 ``` ruby
@@ -36,5 +37,7 @@ That's it!  Now, just omit `: { path: 'is/my/local/path' }` from the example abo
 
 ### Development
 
+``` shell
 bundle exec rake app:db:migrate app:db:test:prepare
 bundle exec rspec
+```
