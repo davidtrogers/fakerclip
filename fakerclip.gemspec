@@ -13,13 +13,13 @@ Gem::Specification.new do |s|
   s.summary     = "Fake S3 on your filesystem for Paperclip."
   s.description = "Simulate writing and reading from S3 by using your filesystem as a Fake S3."
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.rdoc"]
+  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
   s.test_files = Dir["spec/**/*"]
 
-  s.add_dependency "rails", "~> 3.2.13"
-  s.add_dependency "paperclip", "~> 3.4.1"
+  s.add_dependency "rails", "~> 3.2"
+  s.add_dependency "paperclip", "~> 3.4"
   s.add_dependency "fog"
-  s.add_dependency "excon"
+  s.add_dependency "excon", "~> 0.20"
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency 'rspec-rails'

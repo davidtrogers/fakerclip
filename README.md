@@ -22,7 +22,7 @@ PATH_CONFIG = { url: 'is/my/s3/path', s3_bucket: 's3-foo-bar-bucket' }
 has_attachment :foobar, DEFAULT_PAPERCLIP_CONFIG.merge(PATH_CONFIG)
 ```
 
-I sure do.  You should be able to write one config per paperclip attachment, specify the S3 bucket/folder setup, and be done with it.
+You should be able to write one config per paperclip attachment, specify the S3 bucket/folder setup, and be done with it.
 
 With FakerClip, your filesystem is treated as an s3 bucket so you don't have to wonder if the changes you made to your s3 bucket configuration went to the right place.  The idea is, if it didn't work on your local filesystem on development or test environments, it won't work on S3!
 
@@ -32,7 +32,7 @@ With FakerClip, your filesystem is treated as an s3 bucket so you don't have to 
 gem 'fakerclip'
 ```
 
-That's it!  Now, just omit `: { path: 'is/my/local/path' }` from the example above and expect that your files will appear in `"#{Rails.root}/public/fakerclip"` with the same structure as you would expect on S3, e.g. `is/my/s3/path` from above.
+That's it!  Now, just omit `: { path: 'is/my/local/path' }` from the example above and expect that your files will appear in `"#{Rails.root}/public/fakerclip/(development|test)/s3-foo-bar-bucket/"` with the same structure as you would expect on S3, e.g. `is/my/s3/path` from above.
 
 ### Development
 
