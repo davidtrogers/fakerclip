@@ -15,25 +15,54 @@ describe Fakerclip do
     file.rewind
   end
 
-  it "stores S3 objects to the file system" do
-    expect(File.exists?(local_file_path)).to be_false
+  describe "Fog gem" do
 
-    Upload.create(file: uploaded_file)
+    it "stores S3 objects to the file system" do
+      expect(File.exists?(local_file_path)).to be_false
 
-    expect(File.exists?(local_file_path)).to be_true
-    expect(File.open(local_file_path, "rb", &:read)).to eq random_string
+      FogS3GemUpload.create(file: uploaded_file)
+
+      expect(File.exists?(local_file_path)).to be_true
+      expect(File.open(local_file_path, "rb", &:read)).to eq random_string
+    end
+
+    it "gives paths to S3 objects on the file system" do
+      upload = FogS3GemUpload.create(file: uploaded_file)
+
+      upload.file.url.should match /\/fake_s3_test\/some-bucket\/files\/1\/random-bytes.bin\?\d+/
+    end
+
+    after do
+      file.close
+
+      FileUtils.rm_rf('tmp/')
+      FileUtils.rm_rf(Rails.root.join('public/fake_s3_test'))
+    end
   end
 
-  it "gives paths to S3 objects on the file system" do
-    upload = Upload.create(file: uploaded_file)
+  describe "AWS SDK gem" do
 
-    upload.file.url.should match /\/fake_s3_test\/some-bucket\/files\/1\/random-bytes.bin\?\d+/
-  end
+    it "stores S3 objects to the file system" do
+      expect(File.exists?(local_file_path)).to be_false
 
-  after do
-    file.close
+      AwsSdkS3GemUpload.create(file: uploaded_file)
 
-    FileUtils.rm_rf('tmp/')
-    FileUtils.rm_rf(Rails.root.join('public/fake_s3_test'))
+      expect(File.exists?(local_file_path)).to be_true
+      expect(File.open(local_file_path, "rb", &:read)).to eq random_string
+    end
+
+    it "gives paths to S3 objects on the file system" do
+      upload = AwsSdkS3GemUpload.create(file: uploaded_file)
+
+      upload.file.url.should match /\/fake_s3_test\/some-bucket\/files\/1\/random-bytes.bin\?\d+/
+    end
+
+    after do
+      file.close
+
+      FileUtils.rm_rf('tmp/')
+      FileUtils.rm_rf(Rails.root.join('public/fake_s3_test'))
+    end
+
   end
 end

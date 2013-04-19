@@ -2,6 +2,9 @@ module Fakerclip
 
   class Reads
 
+    SUBDOMAIN_BUCKET_REGEX = %r{https?:\/\/(.+)\.s3\.amazonaws\.com}
+    PATH_BUCKET_REGEX      = %r{https?:\/\/s3\.amazonaws\.com\/([^\/]+)\/}
+
     def self.activate
       Paperclip::Attachment.default_options[:url_generator] = UrlGenerator
     end
@@ -11,9 +14,11 @@ module Fakerclip
       def for(style_name, options)
         uri = URI.parse(super)
 
-        if uri.to_s.match(/\.s3\.amazonaws\.com/)
-          bucket = uri.host.split(/\./, 2).first
-          "/fake_s3_#{Rails.env}/#{bucket}#{uri.request_uri}"
+        case uri.to_s
+        when SUBDOMAIN_BUCKET_REGEX
+          "/fake_s3_#{Rails.env}/#{$1}#{uri.request_uri}"
+        when PATH_BUCKET_REGEX
+          "/fake_s3_#{Rails.env}#{uri.request_uri}"
         else
           uri.to_s
         end

@@ -1,7 +1,16 @@
+GIT
+  remote: git://github.com/wycats/artifice
+  revision: cc851e1da42e94115bc0a762c2bd79e081e67ed9
+  specs:
+    artifice (0.6)
+      rack-test
+
 PATH
   remote: .
   specs:
-    fakerclip (0.0.1)
+    fakerclip (0.1.0)
+      artifice
+      aws-sdk
       excon (~> 0.20)
       fog
       paperclip (~> 3.4)
@@ -38,12 +47,25 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     arel (3.0.2)
+    aws-sdk (1.8.5)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
+      uuidtools (~> 2.1)
+    binding_of_caller (0.6.8)
     builder (3.0.4)
     climate_control (0.0.3)
       activesupport (>= 3.0)
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
+    coderay (1.0.8)
+    columnize (0.3.6)
     database_cleaner (0.9.1)
+    debugger (1.5.0)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.0)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.0)
     diff-lcs (1.2.2)
     erubis (2.7.0)
     excon (0.20.1)
@@ -71,11 +93,12 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    method_source (0.8.1)
     mime-types (1.22)
     multi_json (1.7.2)
     net-scp (1.1.0)
       net-ssh (>= 2.6.5)
-    net-ssh (2.6.6)
+    net-ssh (2.6.7)
     nokogiri (1.5.9)
     paperclip (3.4.1)
       activemodel (>= 3.0.0)
@@ -84,6 +107,23 @@ GEM
       cocaine (~> 0.5.0)
       mime-types
     polyglot (0.3.3)
+    pry (0.9.10)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.3.1)
+    pry-debugger (0.2.2)
+      debugger (~> 1.3)
+      pry (~> 0.9.10)
+    pry-doc (0.4.4)
+      pry (>= 0.9.9.6)
+      yard (~> 0.8.1)
+    pry-rails (0.2.2)
+      pry (>= 0.9.10)
+    pry-remote (0.1.7)
+      pry (~> 0.9)
+      slop (~> 3.0)
+    pry-stack_explorer (0.4.7)
+      binding_of_caller (~> 0.6.8)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -121,6 +161,7 @@ GEM
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
     ruby-hmac (0.4.0)
+    slop (3.3.3)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -133,13 +174,23 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.37)
+    uuidtools (2.1.3)
+    yard (0.8.5.2)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  artifice!
   database_cleaner
+  debugger
   factory_girl_rails
   fakerclip!
+  pry
+  pry-debugger
+  pry-doc
+  pry-rails
+  pry-remote
+  pry-stack_explorer
   rspec-rails
   sqlite3

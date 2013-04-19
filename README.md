@@ -34,6 +34,8 @@ gem 'fakerclip'
 
 That's it!  Now, just omit `: { path: 'is/my/local/path' }` from the example above and expect that your files will appear in `"#{Rails.root}/public/fakerclip/(development|test)/s3-foo-bar-bucket/"` with the same structure as you would expect on S3, e.g. `is/my/s3/path` from above.
 
+You can use either/both the fog and the aws-sdk gems as the client for S3
+
 ### Development
 
 ``` shell

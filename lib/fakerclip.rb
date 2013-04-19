@@ -1,6 +1,8 @@
+# TODO: move these where they are needed
 require 'fileutils'
 require 'paperclip'
 require 'fog'
+require 'artifice'
 
 module Fakerclip
 

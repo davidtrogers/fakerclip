@@ -19,10 +19,21 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.2"
   s.add_dependency "paperclip", "~> 3.4"
   s.add_dependency "fog"
+  s.add_dependency "aws-sdk"
   s.add_dependency "excon", "~> 0.20"
+  s.add_dependency "artifice"
 
+  # TODO: maybe cut down on some of these dependencies
   s.add_development_dependency "sqlite3"
-  s.add_development_dependency 'rspec-rails'
-  s.add_development_dependency 'factory_girl_rails'
-  s.add_development_dependency 'database_cleaner'
+  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "factory_girl_rails"
+  s.add_development_dependency "database_cleaner"
+  s.add_development_dependency "debugger"
+  s.add_development_dependency "pry"
+  s.add_development_dependency "pry-debugger"
+  s.add_development_dependency "pry-doc"
+  s.add_development_dependency "pry-rails"
+  s.add_development_dependency "pry-remote"
+  s.add_development_dependency "pry-stack_explorer"
+
 end
