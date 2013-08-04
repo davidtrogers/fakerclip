@@ -8,7 +8,7 @@ GIT
 PATH
   remote: .
   specs:
-    fakerclip (0.1.0)
+    fakerclip (0.1.1)
       artifice
       aws-sdk
       excon (~> 0.20)
